@@ -211,12 +211,79 @@ body::before {
 /* 푸터 */
 .footer {
   animation: fadeInUp 1s ease-out 0.8s both;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
 }
 
-.footer p {
+.footer .copyright {
   color: rgba(255, 255, 255, 0.7);
   font-size: 0.9rem;
   font-weight: 300;
+}
+
+/* Buy Me a Coffee 버튼 */
+.coffee-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 20px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 50px;
+  text-decoration: none;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+}
+
+.coffee-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+  background: rgba(255, 255, 255, 1);
+}
+
+.coffee-icon {
+  font-size: 1.5rem;
+  animation: bounce 2s infinite;
+}
+
+.coffee-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.coffee-main {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 2px;
+}
+
+.coffee-sub {
+  font-size: 0.8rem;
+  color: #7f8c8d;
+  font-weight: 400;
+}
+
+/* 커피 아이콘 바운스 애니메이션 */
+@keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-3px);
+  }
+  60% {
+    transform: translateY(-2px);
+  }
 }
 
 /* 키프레임 애니메이션 */
@@ -287,6 +354,23 @@ body::before {
     padding: 12px 25px;
     font-size: 1rem;
   }
+
+  .coffee-button {
+    padding: 10px 18px;
+    gap: 10px;
+  }
+
+  .coffee-icon {
+    font-size: 1.3rem;
+  }
+
+  .coffee-main {
+    font-size: 0.9rem;
+  }
+
+  .coffee-sub {
+    font-size: 0.75rem;
+  }
 }
 
 @media (max-width: 480px) {
@@ -316,6 +400,23 @@ body::before {
     bottom: -25px;
     right: -15px;
   }
+
+  .coffee-button {
+    padding: 8px 15px;
+    gap: 8px;
+  }
+
+  .coffee-icon {
+    font-size: 1.2rem;
+  }
+
+  .coffee-main {
+    font-size: 0.85rem;
+  }
+
+  .coffee-sub {
+    font-size: 0.7rem;
+  }
 }
 
 /* 접근성 */
@@ -329,6 +430,11 @@ body::before {
 
 /* 포커스 스타일 */
 .new-quote-btn:focus {
+  outline: 2px solid white;
+  outline-offset: 2px;
+}
+
+.coffee-button:focus {
   outline: 2px solid white;
   outline-offset: 2px;
 }
