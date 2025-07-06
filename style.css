@@ -1,0 +1,334 @@
+/* 기본 설정 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Noto Sans KR", sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  position: relative;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+      circle at 20% 50%,
+      rgba(255, 255, 255, 0.1) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 80% 20%,
+      rgba(255, 255, 255, 0.1) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 40% 80%,
+      rgba(255, 255, 255, 0.1) 0%,
+      transparent 50%
+    );
+  z-index: -1;
+}
+
+.container {
+  max-width: 800px;
+  width: 100%;
+  text-align: center;
+  z-index: 1;
+}
+
+/* 헤더 스타일 */
+.header {
+  margin-bottom: 40px;
+  animation: fadeInDown 1s ease-out;
+}
+
+.title {
+  font-size: 3rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 10px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 300;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* 명언 컨테이너 */
+.quote-container {
+  margin-bottom: 40px;
+}
+
+.quote-card {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: fadeInUp 1s ease-out;
+}
+
+.quote-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+}
+
+.quote-content {
+  position: relative;
+}
+
+.quote-text {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #2c3e50;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  quotes: "" " " "" "'" "'";
+  position: relative;
+  opacity: 1;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.quote-text::before {
+  content: open-quote;
+  font-size: 4rem;
+  color: #667eea;
+  position: absolute;
+  top: -20px;
+  left: -30px;
+  font-family: Georgia, serif;
+  opacity: 0.5;
+}
+
+.quote-text::after {
+  content: close-quote;
+  font-size: 4rem;
+  color: #667eea;
+  position: absolute;
+  bottom: -40px;
+  right: -30px;
+  font-family: Georgia, serif;
+  opacity: 0.5;
+}
+
+.quote-author {
+  font-size: 1.1rem;
+  color: #7f8c8d;
+  font-weight: 400;
+  font-style: normal;
+  opacity: 1;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.quote-author::before {
+  content: "— ";
+  margin-right: 5px;
+}
+
+/* 애니메이션 클래스 */
+.quote-text.fade-out,
+.quote-author.fade-out {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.quote-text.fade-in,
+.quote-author.fade-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 새 명언 버튼 */
+.new-quote-btn {
+  background: linear-gradient(45deg, #667eea, #764ba2);
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  border-radius: 50px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+  transition: all 0.3s ease;
+  animation: fadeInUp 1s ease-out 0.5s both;
+}
+
+.new-quote-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 25px rgba(102, 126, 234, 0.4);
+}
+
+.new-quote-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 6px 15px rgba(102, 126, 234, 0.3);
+}
+
+.refresh-icon {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.3s ease;
+}
+
+.new-quote-btn:hover .refresh-icon {
+  transform: rotate(180deg);
+}
+
+/* 로딩 애니메이션 */
+.loading .refresh-icon {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* 푸터 */
+.footer {
+  animation: fadeInUp 1s ease-out 0.8s both;
+}
+
+.footer p {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+  font-weight: 300;
+}
+
+/* 키프레임 애니메이션 */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  body {
+    padding: 15px;
+  }
+
+  .title {
+    font-size: 2.5rem;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+  }
+
+  .quote-card {
+    padding: 30px 25px;
+  }
+
+  .quote-text {
+    font-size: 1.3rem;
+  }
+
+  .quote-text::before,
+  .quote-text::after {
+    font-size: 3rem;
+  }
+
+  .quote-text::before {
+    top: -15px;
+    left: -20px;
+  }
+
+  .quote-text::after {
+    bottom: -30px;
+    right: -20px;
+  }
+
+  .quote-author {
+    font-size: 1rem;
+  }
+
+  .new-quote-btn {
+    padding: 12px 25px;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 2rem;
+  }
+
+  .quote-card {
+    padding: 25px 20px;
+  }
+
+  .quote-text {
+    font-size: 1.2rem;
+  }
+
+  .quote-text::before,
+  .quote-text::after {
+    font-size: 2.5rem;
+  }
+
+  .quote-text::before {
+    top: -10px;
+    left: -15px;
+  }
+
+  .quote-text::after {
+    bottom: -25px;
+    right: -15px;
+  }
+}
+
+/* 접근성 */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* 포커스 스타일 */
+.new-quote-btn:focus {
+  outline: 2px solid white;
+  outline-offset: 2px;
+}
